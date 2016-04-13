@@ -8,7 +8,6 @@
             "email": "gabrielll_07@hotmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {},
     "require-dev": {
         "phpunit/phpunit": "~4.0"
