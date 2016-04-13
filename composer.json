@@ -10,6 +10,9 @@
     ],
     "minimum-stability": "dev",
     "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~4.0"
+    },
     "autoload": {
         "psr-4": {
             "HighIdeas\\UsersOnline\\" : "src/"
