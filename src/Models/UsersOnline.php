@@ -2,16 +2,30 @@
 
 namespace HighIdeas\UsersOnline\Models;
 
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Cache;
+use Carbon\Carbon;
 
-class UsersOnline extends User
+trait UsersOnline
 {
-
-    protected $table = "users";
 
     public function isOnline()
     {
-         return Cache::has('user-is-online-' . $this->id);
+         return Cache::has($this->getCacheKey());
+    }
+
+    public function setCache($minutes = 5)
+    {
+        $expiresAt = Carbon::now()->addMinutes($minutes);
+        return Cache::put($this->getCacheKey(), $this, $expiresAt);
+    }
+
+    public function pullCache()
+    {
+        Cache::pull($this->getCacheKey());
+    }
+
+    public function getCacheKey()
+    {
+        return sprintf('%s-%s', "UserOnline", $this->id);
     }
 }

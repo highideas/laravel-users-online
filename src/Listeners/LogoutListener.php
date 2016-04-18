@@ -26,6 +26,6 @@ class LogoutListener
      */
     public function handle($event)
     {       
-        Cache::pull('user-is-online-' . $event->user->id);
+        $event->user->pullCache();
     }
 }

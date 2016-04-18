@@ -18,9 +18,6 @@
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src/Models/</directory>
-            <directory suffix=".php">./src/Middleware/</directory>
-            <directory suffix=".php">./src/Providers/</directory>
-            <directory suffix=".php">./src/Listeners/</directory>
             <exclude>
               <directory suffix=".php">./src/Controllers/</directory>
               <directory suffix=".php">./vendor/</directory>

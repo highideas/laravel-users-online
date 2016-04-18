@@ -3,8 +3,6 @@
 namespace HighIdeas\UsersOnline\Middleware;
 
 use Closure;
-use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
 
 class UsersOnline
@@ -18,9 +16,8 @@ class UsersOnline
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()) {
-            $expiresAt = Carbon::now()->addMinutes(config('session.lifetime'));
-            Cache::put('user-is-online-' . Auth::user()->id, true, $expiresAt);
+        if(Auth::user()) { 
+            Auth::user()->setCache(config('session.lifetime')); 
         }
 
         return $next($request);

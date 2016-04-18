@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\User;
 use HighIdeas\UsersOnline\Models\UsersOnline as Users;
 
 class UsersOnlineTest extends TestCase
@@ -12,39 +13,36 @@ class UsersOnlineTest extends TestCase
         $this->assertFalse($model->isOnline());
     }
 
+    public function testReturnChachekey()
+    {
+        $model = $this->makeUser();
+        $key = $model->getCacheKey();
+
+        $this->assertEquals(
+            'UserOnline-1',
+            $key
+        );
+    }
+
     public function test_should_return_the_user_cache_logged()
     {
         $model = $this->makeUser();
-
-        Illuminate\Support\Facades\Cache::put('user-is-online-' . $model->id, true, 5);
+        Auth::login($model);
+        Auth::user()->setCache();
         
         $this->assertTrue($model->isOnline());
     }
-
-    public function test_should_return_all_users_cache_logged()
+    
+    public function test_shoud_clear_cache_when_user_do_logout()
     {
-        $user1 = $this->makeUser();
+        $model = $this->makeUser();
+        Auth::login($model);
+        Auth::user()->setCache();
 
-        Illuminate\Support\Facades\Cache::put('user-is-online-' . $user1->id, true, 5);
+        $model->pullCache();
+        Auth::logout();
 
-        /**
-         * User Offline
-         */
-        $user2 = new \HighIdeas\UsersOnline\Models\UsersOnline;
-        $user2->name = "Gabriel";
-        $user2->email = "offline@teste.com";
-        $user2->password = bcrypt("gabriel");
-        $user2->save();
-
-
-        $online = [];
-        foreach (Users::all() as $user) { 
-            if ($user->isOnline()) {
-                $online[] = $user->id;
-            }
-        }
+        $this->assertFalse($model->isOnline());
         
-        $this->assertCount(1, $online);
-        $this->assertEquals($online[0], $user1->id);
     }
 }

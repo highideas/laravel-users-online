@@ -36,11 +36,17 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
 
     public function makeUser()
     {
-        $user = new \HighIdeas\UsersOnline\Models\UsersOnline;
+        $user = new User;
         $user->name = "Gabriel";
         $user->email = "teste@teste.com";
         $user->password = bcrypt("gabriel");
         $user->save();
+
         return $user;
     }
+}
+
+class User extends Illuminate\Foundation\Auth\User
+{
+    use \HighIdeas\UsersOnline\Models\UsersOnline;
 }

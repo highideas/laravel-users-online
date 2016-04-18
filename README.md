@@ -30,6 +30,18 @@ And add new middleware in `app/Http/Kernel.php` :
 'HighIdeas\UsersOnline\Middlewares\UsersOnline:class',
 ```
 
+After this, add the trait in your model User in `app/User.php`:
+
+```php
+
+class User extends Authenticatable
+{
+    use \HighIdeas\UsersOnline\Models\UsersOnline;
+...
+
+```
+
+
 Finally run `php artisan vendor:publish` for add the namespaces
 
 Go to `http://myapp/users-online` to view the users online
