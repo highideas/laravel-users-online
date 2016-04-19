@@ -36,12 +36,30 @@ After this, add the trait in your model User in `app/User.php`:
 
 class User extends Authenticatable
 {
-    use \HighIdeas\UsersOnline\Models\UsersOnline;
+    use \HighIdeas\UsersOnline\Models\UsersOnlineTrait;
 ...
+
+```
+
+For show the users online just use the method `isOnline()`:
+
+```php
+
+$user->isOnline();
+
+// Or
+
+$users = User::all();
+
+foreach ($users as $user) {
+
+    if ($user->isOnline()) {
+        // show the user
+    }
+}
 
 ```
 
 
 Finally run `php artisan vendor:publish` for add the namespaces
 
-Go to `http://myapp/users-online` to view the users online

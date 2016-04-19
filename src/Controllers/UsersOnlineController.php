@@ -3,20 +3,11 @@
 namespace HighIdeas\UsersOnline\Controllers;
 
 use App\Http\Controllers\Controller;
-use HighIdeas\UsersOnline\Models\UsersOnline;
+use App\Use;
 
 class UsersOnlineController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show all users online.
@@ -25,7 +16,7 @@ class UsersOnlineController extends Controller
      */
     public function index()
     {
-        $users = UsersOnline::all();
+        $users = User::all();
         return view('usersonline::index', ['users' => $users]);
     }
 }
