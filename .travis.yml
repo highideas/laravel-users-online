@@ -1,0 +1,34 @@
+# see http://about.travis-ci.org/docs/user/languages/php/ for more hints
+language: php
+
+# list any PHP version you want to test against
+php:
+  - 5.6
+  # aliased to a recent 7.x version
+  - 7.0
+  # aliased to a recent hhvm version
+  - hhvm
+
+
+# optionally set up exclutions and allowed failures in the matrix
+matrix:
+  allow_failures:
+    - php: 7.0
+    - php: hhvm
+
+# execute any number of scripts before the test run, custom env's are available as variables
+before_script:
+    - travis_retry composer self-update
+    - travis_retry composer install --no-interaction --prefer-source
+#    - php -r "copy('.env.example', '.env');"
+#    - php artisan key:generate
+
+# omitting "script:" will default to phpunit
+# use the $DB env variable to determine the phpunit.xml to use
+script: ./vendor/bin/phpunit --coverage-clover=coverage.clover
+
+after_script:
+  - if [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then cd ../; fi
+  - if [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then wget https://scrutinizer-ci.com/ocular.phar; fi
+  - if [ "$TRAVIS_PHP_VERSION" != "7.0" ] && [ "$TRAVIS_PHP_VERSION" != "hhvm" ]; then php ocular.phar code-coverage:upload --format=php-clover tests/coverage.clover; fi
+
