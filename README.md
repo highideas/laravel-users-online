@@ -27,7 +27,7 @@ HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class,
 And add new middleware in `app/Http/Kernel.php` :
 
 ```php
-HighIdeas\UsersOnline\Middlewares\UsersOnline::class,
+\HighIdeas\UsersOnline\Middleware\UsersOnline::class,
 ```
 
 After this, add the trait in your model User in `app/User.php`:
