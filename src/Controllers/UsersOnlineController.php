@@ -3,7 +3,7 @@
 namespace HighIdeas\UsersOnline\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Use;
+use App\User;
 
 class UsersOnlineController extends Controller
 {

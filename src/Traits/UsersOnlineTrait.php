@@ -1,6 +1,6 @@
 <?php
 
-namespace HighIdeas\UsersOnline;
+namespace HighIdeas\UsersOnline\Traits;
 
 use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;

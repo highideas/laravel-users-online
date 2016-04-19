@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
-use HighIdeas\UsersOnline\Models\UsersOnline as Users;
 
 class UsersOnlineTest extends TestCase
 {

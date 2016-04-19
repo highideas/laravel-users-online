@@ -48,5 +48,5 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
 
 class User extends Illuminate\Foundation\Auth\User
 {
-    use \HighIdeas\UsersOnline\Models\UsersOnline;
+    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 }

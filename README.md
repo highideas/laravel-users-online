@@ -20,14 +20,14 @@ composer require highideas/laravel-users-online
 After composer command, add new service provider in `config/app.php` :
 
 ```php
-'HighIdeas\UsersOnline\UsersOnlineServiceProvider::class',
-'HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class',
+HighIdeas\UsersOnline\UsersOnlineServiceProvider::class,
+HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class,
 ```
 
 And add new middleware in `app/Http/Kernel.php` :
 
 ```php
-'HighIdeas\UsersOnline\Middlewares\UsersOnline:class',
+HighIdeas\UsersOnline\Middlewares\UsersOnline::class,
 ```
 
 After this, add the trait in your model User in `app/User.php`:
@@ -36,7 +36,7 @@ After this, add the trait in your model User in `app/User.php`:
 
 class User extends Authenticatable
 {
-    use \HighIdeas\UsersOnline\Models\UsersOnlineTrait;
+    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 ...
 
 ```
