@@ -1,7 +1,7 @@
 # Laravel Users Online
 
 [![Latest Stable Version](https://poser.pugx.org/highideas/laravel-users-online/v/stable)](https://packagist.org/packages/highideas/laravel-users-online) [![Total Downloads](https://poser.pugx.org/highideas/laravel-users-online/downloads)](https://packagist.org/packages/highideas/laravel-users-online) [![Latest Unstable Version](https://poser.pugx.org/highideas/laravel-users-online/v/unstable)](https://packagist.org/packages/highideas/laravel-users-online) [![License](https://poser.pugx.org/highideas/laravel-users-online/license)](https://packagist.org/packages/highideas/laravel-users-online)
-[![Build Status](https://travis-ci.org/GabrielDeveloper/laravel-users-online.svg?branch=master)](https://travis-ci.org/GabrielDeveloper/laravel-users-online)
+[![Build Status](https://travis-ci.org/highideas/laravel-users-online.svg?branch=master)](https://travis-ci.org/highideas/laravel-users-online)
 ## Instalation
 
 Add the new required package in your composer.json
