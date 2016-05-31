@@ -12,7 +12,7 @@
 Add the new required package in your composer.json
 
 ```
-"highideas\laravel-users-online": "^1.0"
+"highideas/laravel-users-online": "^1.0"
 ```
 Run `composer update` or `php composer.phar update`.
 
