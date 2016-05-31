@@ -16,10 +16,12 @@ class UsersOnline
      */
     public function handle($request, Closure $next)
     {
-        if(Auth::user()) { 
-            Auth::user()->setCache(config('session.lifetime')); 
+        $response = $next($request);
+
+        if (Auth::user()) {
+            Auth::user()->setCache(config('session.lifetime'));
         }
 
-        return $next($request);
+        return $response;
     }
 }
