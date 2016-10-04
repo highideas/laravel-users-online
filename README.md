@@ -1,13 +1,25 @@
 # Laravel Users Online
 
-[![Latest Stable Version](https://poser.pugx.org/highideas/laravel-users-online/v/stable)](https://packagist.org/packages/highideas/laravel-users-online) [![Total Downloads](https://poser.pugx.org/highideas/laravel-users-online/downloads)](https://packagist.org/packages/highideas/laravel-users-online) [![Latest Unstable Version](https://poser.pugx.org/highideas/laravel-users-online/v/unstable)](https://packagist.org/packages/highideas/laravel-users-online) [![License](https://poser.pugx.org/highideas/laravel-users-online/license)](https://packagist.org/packages/highideas/laravel-users-online)
+[![Latest Stable Version](https://poser.pugx.org/highideas/laravel-users-online/v/stable)](https://packagist.org/packages/highideas/laravel-users-online) 
+[![Total Downloads](https://poser.pugx.org/highideas/laravel-users-online/downloads)](https://packagist.org/packages/highideas/laravel-users-online) 
+[![License](https://poser.pugx.org/highideas/laravel-users-online/license)](https://packagist.org/packages/highideas/laravel-users-online)
 [![Build Status](https://travis-ci.org/highideas/laravel-users-online.svg?branch=master)](https://travis-ci.org/highideas/laravel-users-online)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
+[![Codacy Badge](https://api.codacy.com/project/badge/coverage/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
+
+## Laravel compatibility
+
+ Laravel      | Package
+:-------------|:----------
+  5.3.x        | 2.0.x
+  5.2.x        | 1.0.x
+
 ## Instalation
 
 Add the new required package in your composer.json
 
 ```
-"highideas/laravel-users-online": "^1.0"
+"highideas/laravel-users-online": "^2.0"
 ```
 Run `composer update` or `php composer.phar update`.
 
