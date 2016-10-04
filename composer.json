@@ -27,5 +27,10 @@
         "illuminate/auth": "^5.2",
         "illuminate/session": "^5.2",
         "codacy/coverage": "dev-master"
+    },
+    "scripts": {
+        "test": [
+            "phpunit"
+        ]
     }
 }
