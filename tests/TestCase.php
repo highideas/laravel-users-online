@@ -5,9 +5,11 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 abstract class TestCase extends Orchestra\Testbench\TestCase
 {
+    protected $faker;
 
     public function setUp()
     {
+        $this->faker = Faker\Factory::create();
         parent::setUp();
         $this->setUpDatabase();
         $this->migrateTables();
@@ -37,12 +39,17 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
     public function makeUser()
     {
         $user = new User;
-        $user->name = "Gabriel";
-        $user->email = "teste@teste.com";
+        $user->name = $this->faker->name;
+        $user->email = $this->faker->email;
         $user->password = bcrypt("gabriel");
         $user->save();
 
         return $user;
+    }
+
+    public function getUserModel()
+    {
+        return new User;
     }
 }
 
