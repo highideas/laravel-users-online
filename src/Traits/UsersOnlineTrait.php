@@ -8,6 +8,11 @@ use Carbon\Carbon;
 trait UsersOnlineTrait
 {
 
+    public function allOnline()
+    {
+        return $this->all()->filter->isOnline();
+    }
+
     public function isOnline()
     {
          return Cache::has($this->getCacheKey());
