@@ -13,7 +13,6 @@ class UsersOnlineServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/views', 'usersonline');
     }
 
     /**
@@ -23,8 +22,6 @@ class UsersOnlineServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        include __DIR__.'/routes.php';
-        $this->app->make('HighIdeas\UsersOnline\Controllers\UsersOnlineController');
     }
 }
 
