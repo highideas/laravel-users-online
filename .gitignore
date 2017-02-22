@@ -1,2 +1,4 @@
 vendor/
 tests/report/
+tags
+*.swp
