@@ -28,10 +28,10 @@ class UsersOnlineTest extends TestCase
         $model = $this->makeUser();
         Auth::login($model);
         Auth::user()->setCache();
-        
+
         $this->assertTrue($model->isOnline());
     }
-    
+
     public function test_shoud_clear_cache_when_user_do_logout()
     {
         $model = $this->makeUser();
@@ -42,6 +42,24 @@ class UsersOnlineTest extends TestCase
         Auth::logout();
 
         $this->assertFalse($model->isOnline());
-        
+
+    }
+
+    public function test_should_return_all_users_online()
+    {
+        $user1 = $this->makeUser();
+        Auth::login($user1);
+        Auth::user()->setCache();
+
+        $user2 = $this->makeUser();
+        Auth::login($user2);
+        Auth::user()->setCache();
+
+        $user3 = $this->makeUser();
+        Auth::login($user3);
+
+        $user = $this->getUserModel();
+
+        $this->assertEquals(2, $user->allOnline()->count());
     }
 }

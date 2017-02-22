@@ -1,18 +1,26 @@
 # Laravel Users Online
 
-[![Latest Stable Version](https://poser.pugx.org/highideas/laravel-users-online/v/stable)](https://packagist.org/packages/highideas/laravel-users-online) 
-[![Total Downloads](https://poser.pugx.org/highideas/laravel-users-online/downloads)](https://packagist.org/packages/highideas/laravel-users-online) 
+[![Latest Stable Version](https://poser.pugx.org/highideas/laravel-users-online/v/stable)](https://packagist.org/packages/highideas/laravel-users-online)
+[![Total Downloads](https://poser.pugx.org/highideas/laravel-users-online/downloads)](https://packagist.org/packages/highideas/laravel-users-online)
 [![License](https://poser.pugx.org/highideas/laravel-users-online/license)](https://packagist.org/packages/highideas/laravel-users-online)
 [![Build Status](https://travis-ci.org/highideas/laravel-users-online.svg?branch=master)](https://travis-ci.org/highideas/laravel-users-online)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
 [![Codacy Badge](https://api.codacy.com/project/badge/coverage/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
+
+## Laravel compatibility
+
+ Laravel      | Package
+:-------------|:----------
+  5.4.x        | 2.1.x
+  5.3.x        | 2.0.x
+  5.2.x        | 1.0.x
 
 ## Instalation
 
 Add the new required package in your composer.json
 
 ```
-"highideas/laravel-users-online": "^1.0"
+"highideas/laravel-users-online": "^2.1"
 ```
 Run `composer update` or `php composer.phar update`.
 
@@ -46,25 +54,18 @@ class User extends Authenticatable
 
 ```
 
-For show the users online just use the method `isOnline()`:
+For show the users online just use the method `allOnline()`:
 
 ```php
-
-$user->isOnline();
-
-// Or
-
-$users = User::all();
-
-foreach ($users as $user) {
-
-    if ($user->isOnline()) {
-        // show the user
-    }
-}
-
+$user = new User;
+$user->allOnline();
 ```
+Or if you want to check if a specific user is online use the method `isOnline()`:
 
+```php
+$user = User::find($id);
+$user->isOnline();
+```
 
 Finally run `php artisan vendor:publish` for add the namespaces
 
