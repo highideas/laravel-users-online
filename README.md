@@ -11,7 +11,7 @@
 
  Laravel      | Package
 :-------------|:----------
-  5.4.x        | 2.1.x
+  5.4.x        | 2.2.x
   5.3.x        | 2.0.x
   5.2.x        | 1.0.x
 
@@ -20,7 +20,7 @@
 Add the new required package in your composer.json
 
 ```
-"highideas/laravel-users-online": "^2.1"
+"highideas/laravel-users-online": "^2.2"
 ```
 Run `composer update` or `php composer.phar update`.
 
@@ -53,6 +53,9 @@ class User extends Authenticatable
 ...
 
 ```
+Finally run `php artisan vendor:publish` for add the namespaces
+
+## Usage
 
 For show the users online just use the method `allOnline()`:
 
@@ -67,5 +70,11 @@ $user = User::find($id);
 $user->isOnline();
 ```
 
-Finally run `php artisan vendor:publish` for add the namespaces
+You can sort all users online with the methods `mostRecentOnline()` and `leastRecentOnline()`:
+
+```php
+$user = new User;
+$user->mostRecentOnline();
+$user->leastRecentOnline();
+```
 

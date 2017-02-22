@@ -6,7 +6,15 @@
     "authors": [
         {
             "name": "Gabriel Goncalves",
-            "email": "gabrielll_07@hotmail.com"
+            "email": "gabrielll_07@hotmail.com",
+            "homepage": "http://gabrieldeveloper.com.br",
+            "role": "Developer"
+        },
+        {
+            "name": "Marco Araujo",
+            "email": "marco.araujo.junior@gmail.com",
+            "homepage": "http://marcojunior.com",
+            "role": "Developer"
         }
     ],
     "require": {},
