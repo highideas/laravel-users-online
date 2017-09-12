@@ -17,5 +17,5 @@
 
 ### Added
 
-- Added extra section of package composer.json to be available to Package Discovery ([#30](https://github.com/highideas/laravel-users-online/pull/30))
-- Created instructions to clarify installations and usage of distincts versions ([#30](https://github.com/highideas/laravel-users-online/pull/30))
+- Added extra section of package composer.json to be available to Package Discovery ([#32](https://github.com/highideas/laravel-users-online/pull/32))
+- Created instructions to clarify installations and usage of distincts versions ([#32](https://github.com/highideas/laravel-users-online/pull/32))
