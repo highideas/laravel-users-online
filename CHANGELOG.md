@@ -12,3 +12,10 @@
 ### Fixed
 
 - Fixed expiration information when creating cached ([#20](https://github.com/highideas/laravel-users-online/pull/20))
+
+## v2.2.1 (2017-09-12)
+
+### Added
+
+- Added extra section of package composer.json to be available to Package Discovery ([#30](https://github.com/highideas/laravel-users-online/pull/30))
+- Created instructions to clarify installations and usage of distincts versions ([#30](https://github.com/highideas/laravel-users-online/pull/30))
