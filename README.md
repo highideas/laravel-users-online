@@ -74,8 +74,8 @@ $user->leastRecentOnline();
 
 **Installation and usage on last versions of framework:**
 
-[Laravel 5.4](https://github.com/highideas/laravel-users-online/instructions/5.4.md)
+[Laravel 5.4](instructions/5.4.md)
 
-[Laravel 5.3](https://github.com/highideas/laravel-users-online/instructions/5.3.md)
+[Laravel 5.3](instructions/5.3.md)
 
-[Laravel 5.2](https://github.com/highideas/laravel-users-online/instructions/5.2.md)
+[Laravel 5.2](instructions/5.2.md)
