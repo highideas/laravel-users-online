@@ -11,6 +11,7 @@
 
  Laravel      | Package
 :-------------|:----------
+  5.5.x        | 2.2.x
   5.4.x        | 2.2.x
   5.3.x        | 2.0.x
   5.2.x        | 1.0.x
@@ -30,14 +31,7 @@ Or install directly via composer
 composer require highideas/laravel-users-online
 ```
 
-After composer command, add new service provider in `config/app.php` :
-
-```php
-HighIdeas\UsersOnline\UsersOnlineServiceProvider::class,
-HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class,
-```
-
-And add new middleware in `app/Http/Kernel.php` :
+After composer command, add new middleware in `app/Http/Kernel.php` :
 
 ```php
 \HighIdeas\UsersOnline\Middleware\UsersOnline::class,
@@ -78,3 +72,10 @@ $user->mostRecentOnline();
 $user->leastRecentOnline();
 ```
 
+**Installation and usage on last versions of framework:**
+
+[Laravel 5.4](https://github.com/highideas/laravel-users-online/instructions/5.4.md)
+
+[Laravel 5.3](https://github.com/highideas/laravel-users-online/instructions/5.3.md)
+
+[Laravel 5.2](https://github.com/highideas/laravel-users-online/instructions/5.2.md)
