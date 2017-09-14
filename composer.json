@@ -40,5 +40,12 @@
         "test": [
             "phpunit"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HighIdeas\\UsersOnline\\Providers\\UsersOnlineEventServiceProvider"
+            ]
+        }
     }
 }
