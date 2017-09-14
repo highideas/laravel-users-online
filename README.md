@@ -5,7 +5,7 @@
 [![License](https://poser.pugx.org/highideas/laravel-users-online/license)](https://packagist.org/packages/highideas/laravel-users-online)
 [![Build Status](https://travis-ci.org/highideas/laravel-users-online.svg?branch=master)](https://travis-ci.org/highideas/laravel-users-online)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
-[![Codacy Badge](https://api.codacy.com/project/badge/coverage/22e4eb8b71e14c24adccd8edbbd45682)](https://www.codacy.com/app/HighIdeas/laravel-users-online)
+[![codecov](https://codecov.io/gh/highideas/laravel-users-online/branch/master/graph/badge.svg)](https://codecov.io/gh/highideas/laravel-users-online)
 
 ## Laravel compatibility
 
