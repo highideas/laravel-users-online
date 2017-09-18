@@ -21,7 +21,7 @@
 Add the new required package in your composer.json
 
 ```
-"highideas/laravel-users-online": "^2.2"
+"highideas/laravel-users-online": "^2.3"
 ```
 Run `composer update` or `php composer.phar update`.
 
