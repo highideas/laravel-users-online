@@ -1,5 +1,7 @@
 <?php
 
+namespace HighIdeas\Tests;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use Carbon\Carbon;
