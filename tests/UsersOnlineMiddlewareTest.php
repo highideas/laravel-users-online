@@ -120,7 +120,7 @@ class UsersOnlineMiddlewareTest extends TestCase
         $this->assertEquals($expectedOrder, $user->mostRecentOnline()->pluck('id')->all());
     }
 
-    public function test_should_sacanear_gabriel()
+    public function test_should_remove_offline_users()
     {
         $userOne   = $this->makeUser();
         Auth::login($userOne);
