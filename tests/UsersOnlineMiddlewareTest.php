@@ -91,7 +91,7 @@ class UsersOnlineMiddlewareTest extends TestCase
         $this->assertEquals($expectedOrder, $user->leastRecentOnline()->pluck('id')->all());
     }
 
-    public function test_should_retunr_all_online_users_order_by_most_recent()
+    public function test_should_return_all_online_users_order_by_most_recent()
     {
         Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
         $userOne   = $this->makeUser();
