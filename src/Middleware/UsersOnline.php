@@ -19,7 +19,7 @@ class UsersOnline
         $response = $next($request);
 
         if (Auth::user()) {
-            Auth::user()->setCache(config('session.lifetime'));
+            Auth::user()->setCache(config('usersonline.online_timeout'));
         }
 
         return $response;
