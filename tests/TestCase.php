@@ -7,7 +7,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
 {
     protected $faker;
 
-    public function setUp()
+    protected function setUp(): void
     {
         $this->faker = Faker\Factory::create();
         parent::setUp();

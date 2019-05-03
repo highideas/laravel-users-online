@@ -42,17 +42,21 @@ trait UsersOnlineTrait
         return $cache['cachedAt'];
     }
 
-    public function setCache($minutes = 5)
+    public function setCache($seconds = 5)
     {
-        return Cache::put($this->getCacheKey(), $this->getCacheContent(), $minutes);
+        return Cache::put(
+            $this->getCacheKey(),
+            $this->getCacheContent($seconds),
+            $seconds
+        );
     }
 
-    public function getCacheContent()
+    public function getCacheContent($seconds = 300)
     {
         if (!empty($cache = Cache::get($this->getCacheKey()))) {
             return $cache;
         }
-        $cachedAt = Carbon::now();
+        $cachedAt = Carbon::now()->addMinutes($seconds / 60);
         return [
             'cachedAt' => $cachedAt,
             'user' => $this,

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 class UsersOnlineTest extends TestCase
 {
@@ -28,7 +29,10 @@ class UsersOnlineTest extends TestCase
     {
         $model = $this->makeUser();
         Auth::login($model);
-        Auth::user()->setCache();
+        Auth::user()->setCache(600);
+
+        //var_dump(Auth::user()->getCachedAt()->toDateTimeString());
+        //var_dump(Cache::get($model->getCacheKey()));
 
         $this->assertTrue($model->isOnline());
     }
@@ -66,20 +70,17 @@ class UsersOnlineTest extends TestCase
 
     public function test_should_retunr_all_online_users_order_by_most_recent()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
         $user1 = $this->makeUser();
         Auth::login($user1);
-        Auth::user()->setCache(10);
+        Auth::user()->setCache(600);
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $user2 = $this->makeUser();
         Auth::login($user2);
-        Auth::user()->setCache(5);
+        Auth::user()->setCache(300);
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $user3 = $this->makeUser();
         Auth::login($user3);
-        Auth::user()->setCache(15);
+        Auth::user()->setCache(900);
 
         Carbon::setTestNow();
 
@@ -95,20 +96,17 @@ class UsersOnlineTest extends TestCase
 
     public function test_should_retunr_all_online_users_order_by_least_recent()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
         $user1 = $this->makeUser();
         Auth::login($user1);
-        Auth::user()->setCache(10);
+        Auth::user()->setCache(600);
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $user2 = $this->makeUser();
         Auth::login($user2);
-        Auth::user()->setCache(5);
+        Auth::user()->setCache(300);
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $user3 = $this->makeUser();
         Auth::login($user3);
-        Auth::user()->setCache(15);
+        Auth::user()->setCache(900);
 
         Carbon::setTestNow();
 
@@ -134,11 +132,11 @@ class UsersOnlineTest extends TestCase
         Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $user = $this->makeUser();
         Auth::login($user);
-        Auth::user()->setCache();
+        Auth::user()->setCache(600);
 
         $this->assertEquals(
             [
-                'cachedAt' => Carbon::now(),
+                'cachedAt' => Carbon::now()->addMinutes(10),
                 'user' => $user,
             ],
             $user->getCacheContent()

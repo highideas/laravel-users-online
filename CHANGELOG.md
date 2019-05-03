@@ -19,3 +19,13 @@
 
 - Added extra section of package composer.json to be available to Package Discovery ([#32](https://github.com/highideas/laravel-users-online/pull/32))
 - Created instructions to clarify installations and usage of distincts versions ([#32](https://github.com/highideas/laravel-users-online/pull/32))
+
+## v2.2.1 (2019-05-03)
+
+### Added
+
+- Compatibility with Laravel 5.8
+
+### Fixed
+
+- Fixes value of cachedAt and tests
