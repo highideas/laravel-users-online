@@ -20,7 +20,8 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "HighIdeas\\UsersOnline\\" : "src/"
+            "HighIdeas\\UsersOnline\\" : "src/",
+            "HighIdeas\\Tests\\" : "tests/"
         }
     },
     "autoload-dev": {

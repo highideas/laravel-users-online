@@ -1,5 +1,7 @@
 <?php
 
+namespace HighIdeas\Tests;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\User;
 use Carbon\Carbon;
@@ -30,9 +32,6 @@ class UsersOnlineTest extends TestCase
         $model = $this->makeUser();
         Auth::login($model);
         Auth::user()->setCache(600);
-
-        //var_dump(Auth::user()->getCachedAt()->toDateTimeString());
-        //var_dump(Cache::get($model->getCacheKey()));
 
         $this->assertTrue($model->isOnline());
     }
