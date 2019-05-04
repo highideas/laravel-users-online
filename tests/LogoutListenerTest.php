@@ -88,6 +88,7 @@ class LogoutListenerTest extends TestCase
         Auth::login($userTwo);
         Auth::user()->setCache();
 
+        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $userThree = $this->makeUser();
         Auth::login($userThree);
         Auth::user()->setCache();

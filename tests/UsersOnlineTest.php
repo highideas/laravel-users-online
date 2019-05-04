@@ -36,6 +36,16 @@ class UsersOnlineTest extends TestCase
         $this->assertTrue($model->isOnline());
     }
 
+    public function test_should_logout_user_by_time()
+    {
+        $model = $this->makeUser();
+        Auth::login($model);
+        Auth::user()->setCache(300);
+
+        Carbon::setTestNow(Carbon::now()->addMinutes(10));
+        $this->assertFalse($model->isOnline());
+    }
+
     public function test_shoud_clear_cache_when_user_do_logout()
     {
         $model = $this->makeUser();
@@ -69,26 +79,25 @@ class UsersOnlineTest extends TestCase
 
     public function test_should_retunr_all_online_users_order_by_most_recent()
     {
+
         $user1 = $this->makeUser();
         Auth::login($user1);
-        Auth::user()->setCache(600);
+        Auth::user()->setCache();
 
         $user2 = $this->makeUser();
         Auth::login($user2);
-        Auth::user()->setCache(300);
+        Auth::user()->setCache();
 
         $user3 = $this->makeUser();
         Auth::login($user3);
-        Auth::user()->setCache(900);
-
-        Carbon::setTestNow();
+        Auth::user()->setCache();
 
         $user = $this->getUserModel();
 
         $expectedOrder = [
             $user3->id,
-            $user1->id,
             $user2->id,
+            $user1->id,
         ];
         $this->assertEquals($expectedOrder, $user->mostRecentOnline()->pluck('id')->all());
     }
@@ -97,23 +106,23 @@ class UsersOnlineTest extends TestCase
     {
         $user1 = $this->makeUser();
         Auth::login($user1);
-        Auth::user()->setCache(600);
+        Auth::user()->setCache();
 
         $user2 = $this->makeUser();
         Auth::login($user2);
-        Auth::user()->setCache(300);
+        Auth::user()->setCache();
 
         $user3 = $this->makeUser();
         Auth::login($user3);
-        Auth::user()->setCache(900);
+        Auth::user()->setCache();
 
         Carbon::setTestNow();
 
         $user = $this->getUserModel();
 
         $expectedOrder = [
-            $user2->id,
             $user1->id,
+            $user2->id,
             $user3->id,
         ];
         $this->assertEquals($expectedOrder, $user->leastRecentOnline()->pluck('id')->all());
@@ -135,7 +144,7 @@ class UsersOnlineTest extends TestCase
 
         $this->assertEquals(
             [
-                'cachedAt' => Carbon::now()->addMinutes(10),
+                'cachedAt' => Carbon::now(),
                 'user' => $user,
             ],
             $user->getCacheContent()
