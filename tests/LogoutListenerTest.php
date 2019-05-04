@@ -20,7 +20,7 @@ class LogoutListenerTest extends TestCase
         $this->assertTrue($userOne->isOnline());
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout("moises", $userOne));
+        $listener->handle(new Logout("session", $userOne));
 
         $user = $this->getUserModel();
 
@@ -46,7 +46,7 @@ class LogoutListenerTest extends TestCase
         $this->assertEquals(3, $user->allOnline()->count());
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout("moises", $userThree));
+        $listener->handle(new Logout("session", $userThree));
 
         $this->assertEquals(2, $user->allOnline()->count());
     }
@@ -68,7 +68,7 @@ class LogoutListenerTest extends TestCase
         Carbon::setTestNow();
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout("moises", $userTwo));
+        $listener->handle(new Logout("session", $userTwo));
 
         $user = $this->getUserModel();
         $expectedOrder = [
@@ -88,15 +88,12 @@ class LogoutListenerTest extends TestCase
         Auth::login($userTwo);
         Auth::user()->setCache();
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $userThree = $this->makeUser();
         Auth::login($userThree);
         Auth::user()->setCache();
 
-        Carbon::setTestNow();
-
         $listener = new LogoutListener();
-        $listener->handle(new Logout("moises", $userTwo));
+        $listener->handle(new Logout("session", $userTwo));
 
         $user = $this->getUserModel();
 
