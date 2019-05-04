@@ -17,6 +17,8 @@ class LogoutListener
      */
     public function handle($event)
     {
-        $event->user->pullCache();
+        if ($event->user !== null) {
+            $event->user->pullCache();
+        }
     }
 }

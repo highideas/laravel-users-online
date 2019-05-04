@@ -11,6 +11,9 @@
 
  Laravel      | Package
 :-------------|:----------
+  5.8.x        | 2.4.x
+  5.7.x        | 2.3.x
+  5.6.x        | 2.3.x
   5.5.x        | 2.3.x
   5.4.x        | 2.2.x
   5.3.x        | 2.0.x
@@ -21,7 +24,7 @@
 Add the new required package in your composer.json
 
 ```
-"highideas/laravel-users-online": "^2.3"
+"highideas/laravel-users-online": "^2.4"
 ```
 Run `composer update` or `php composer.phar update`.
 

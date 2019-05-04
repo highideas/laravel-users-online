@@ -20,7 +20,7 @@ class LogoutListenerTest extends TestCase
         $this->assertTrue($userOne->isOnline());
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout($userOne));
+        $listener->handle(new Logout("session", $userOne));
 
         $user = $this->getUserModel();
 
@@ -46,24 +46,21 @@ class LogoutListenerTest extends TestCase
         $this->assertEquals(3, $user->allOnline()->count());
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout($userThree));
+        $listener->handle(new Logout("session", $userThree));
 
         $this->assertEquals(2, $user->allOnline()->count());
     }
 
     public function test_should_list_all_logged_users_ordered_by_least_recent_online()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
         $userOne   = $this->makeUser();
         Auth::login($userOne);
         Auth::user()->setCache();
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $userTwo   = $this->makeUser();
         Auth::login($userTwo);
         Auth::user()->setCache();
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $userThree = $this->makeUser();
         Auth::login($userThree);
         Auth::user()->setCache();
@@ -71,7 +68,7 @@ class LogoutListenerTest extends TestCase
         Carbon::setTestNow();
 
         $listener = new LogoutListener();
-        $listener->handle(new Logout($userTwo));
+        $listener->handle(new Logout("session", $userTwo));
 
         $user = $this->getUserModel();
         $expectedOrder = [
@@ -83,25 +80,20 @@ class LogoutListenerTest extends TestCase
 
     public function test_should_return_all_logged_users_ordered_by_most_recent_without_user_that_got_out()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
         $userOne   = $this->makeUser();
         Auth::login($userOne);
         Auth::user()->setCache();
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $userTwo   = $this->makeUser();
         Auth::login($userTwo);
         Auth::user()->setCache();
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $userThree = $this->makeUser();
         Auth::login($userThree);
         Auth::user()->setCache();
 
-        Carbon::setTestNow();
-
         $listener = new LogoutListener();
-        $listener->handle(new Logout($userTwo));
+        $listener->handle(new Logout("session", $userTwo));
 
         $user = $this->getUserModel();
 

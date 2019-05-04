@@ -8,7 +8,6 @@
          convertWarningsToExceptions="true"
          processIsolation="true"
          stopOnFailure="false"
-         syntaxCheck="false"
 >
     <testsuites>
         <testsuite name="Package Test Suite">
@@ -21,6 +20,7 @@
             <exclude>
               <directory suffix=".php">./src/Controllers/</directory>
               <directory suffix=".php">./vendor/</directory>
+              <file>./src/UsersOnlineServiceProvider.php</file>
             </exclude>
         </whitelist>
     </filter>

@@ -3,18 +3,19 @@
 namespace HighIdeas\Tests;
 
 use HighIdeas\UsersOnline\Middleware\UsersOnline;
+use \HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider;
 use \Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class UsersOnlineMiddlewareTest extends TestCase
 {
-    public function setUp()
+    public function setUp() : void
     {
         parent::setUp();
-        $this->app->register(\HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider::class);
+        $this->app->register(UsersOnlineEventServiceProvider::class);
 
         \Route::middleware(
-            \HighIdeas\UsersOnline\Middleware\UsersOnline::class
+            UsersOnline::class
         )->any(
             '/_test/usersOnLine',
             function () { return 'OK';}
@@ -27,7 +28,7 @@ class UsersOnlineMiddlewareTest extends TestCase
 
         Auth::login($model);
 
-        $response = $this->get('/_test/usersOnLine');
+        $this->get('/_test/usersOnLine');
 
         $this->assertTrue($model->isOnline());
     }
@@ -36,16 +37,16 @@ class UsersOnlineMiddlewareTest extends TestCase
     {
         $model = $this->makeUser();
 
-        $response = $this->get('/_test/usersOnLine');
+        $this->get('/_test/usersOnLine');
 
         $this->assertFalse($model->isOnline());
     }
 
     public function test_user_should_return_all_online()
     {
-        $userOne   = $this->makeUser();
+        $this->makeUser();
 
-        $userTwo   = $this->makeUser();
+        $userTwo = $this->makeUser();
         Auth::login($userTwo);
         $this->get('/_test/usersOnLine');
 
@@ -53,7 +54,7 @@ class UsersOnlineMiddlewareTest extends TestCase
         Auth::login($userThree);
         $this->get('/_test/usersOnLine');
 
-        $userFour  = $this->makeUser();
+        $userFour = $this->makeUser();
         Auth::login($userFour);
         $this->get('/_test/usersOnLine');
 
@@ -65,17 +66,14 @@ class UsersOnlineMiddlewareTest extends TestCase
 
     public function test_user_should_list_all_logged_in_order_by_least_recent_online()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
-        $userOne   = $this->makeUser();
-        Auth::login($userOne);
-        $this->get('/_test/usersOnLine');
-
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $userTwo   = $this->makeUser();
         Auth::login($userTwo);
         $this->get('/_test/usersOnLine');
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
+        $userOne   = $this->makeUser();
+        Auth::login($userOne);
+        $this->get('/_test/usersOnLine');
+
         $userThree = $this->makeUser();
         Auth::login($userThree);
         $this->get('/_test/usersOnLine');
@@ -93,17 +91,15 @@ class UsersOnlineMiddlewareTest extends TestCase
 
     public function test_should_return_all_online_users_order_by_most_recent()
     {
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 45, 22));
-        $userOne   = $this->makeUser();
-        Auth::login($userOne);
-        $this->get('/_test/usersOnLine');
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 40, 22));
         $userTwo   = $this->makeUser();
         Auth::login($userTwo);
         $this->get('/_test/usersOnLine');
 
-        Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
+        $userOne   = $this->makeUser();
+        Auth::login($userOne);
+        $this->get('/_test/usersOnLine');
+
         $userThree = $this->makeUser();
         Auth::login($userThree);
         $this->get('/_test/usersOnLine');
