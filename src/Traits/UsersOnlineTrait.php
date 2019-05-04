@@ -42,7 +42,7 @@ trait UsersOnlineTrait
         return $cache['cachedAt'];
     }
 
-    public function setCache($seconds = 5)
+    public function setCache($seconds = 300)
     {
         return Cache::put(
             $this->getCacheKey(),
