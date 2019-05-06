@@ -13,6 +13,9 @@ class UsersOnlineServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->publishes([
+            __DIR__.'/Config/usersonline.php' => config_path('usersonline.php'),
+        ]);
     }
 
     /**
@@ -22,6 +25,6 @@ class UsersOnlineServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/Config/usersonline.php', 'usersonline');
     }
 }
-
