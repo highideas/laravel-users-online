@@ -1,15 +1,16 @@
 <?php
 
+namespace HighIdeas\Tests;
+
 use Illuminate\Database\Capsule\Manager as DB;
 
-
-abstract class TestCase extends Orchestra\Testbench\TestCase
+abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     protected $faker;
 
-    public function setUp()
+    protected function setUp(): void
     {
-        $this->faker = Faker\Factory::create();
+        $this->faker = \Faker\Factory::create();
         parent::setUp();
         $this->setUpDatabase();
         $this->migrateTables();
@@ -53,7 +54,7 @@ abstract class TestCase extends Orchestra\Testbench\TestCase
     }
 }
 
-class User extends Illuminate\Foundation\Auth\User
+class User extends \Illuminate\Foundation\Auth\User
 {
     use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 }

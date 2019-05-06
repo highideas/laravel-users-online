@@ -8,15 +8,6 @@ use Illuminate\Support\Facades\Cache;
 
 class LogoutListener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Handle the event.
@@ -25,7 +16,9 @@ class LogoutListener
      * @return void
      */
     public function handle($event)
-    {       
-        $event->user->pullCache();
+    {
+        if ($event->user !== null) {
+            $event->user->pullCache();
+        }
     }
 }
