@@ -2,6 +2,7 @@
 
 namespace HighIdeas\Tests;
 
+use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Database\Capsule\Manager as DB;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
@@ -56,5 +57,5 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
 class User extends \Illuminate\Foundation\Auth\User
 {
-    use \HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
+    use UsersOnlineTrait;
 }

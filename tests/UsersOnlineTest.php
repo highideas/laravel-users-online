@@ -2,10 +2,7 @@
 
 namespace HighIdeas\Tests;
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Foundation\Auth\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 
 class UsersOnlineTest extends TestCase
 {
@@ -16,7 +13,7 @@ class UsersOnlineTest extends TestCase
         $this->assertFalse($model->isOnline());
     }
 
-    public function testReturnChachekey()
+    public function test_should_return_chache_key()
     {
         $model = $this->makeUser();
         $key = $model->getCacheKey();
@@ -30,8 +27,7 @@ class UsersOnlineTest extends TestCase
     public function test_should_return_the_user_cache_logged()
     {
         $model = $this->makeUser();
-        Auth::login($model);
-        Auth::user()->setCache(600);
+        $model->setCache();
 
         $this->assertTrue($model->isOnline());
     }
@@ -39,8 +35,7 @@ class UsersOnlineTest extends TestCase
     public function test_should_logout_user_by_time()
     {
         $model = $this->makeUser();
-        Auth::login($model);
-        Auth::user()->setCache(300);
+        $model->setCache(300);
 
         Carbon::setTestNow(Carbon::now()->addMinutes(10));
         $this->assertFalse($model->isOnline());
@@ -49,11 +44,9 @@ class UsersOnlineTest extends TestCase
     public function test_shoud_clear_cache_when_user_do_logout()
     {
         $model = $this->makeUser();
-        Auth::login($model);
-        Auth::user()->setCache();
+        $model->setCache();
 
         $model->pullCache();
-        Auth::logout();
 
         $this->assertFalse($model->isOnline());
 
@@ -62,15 +55,14 @@ class UsersOnlineTest extends TestCase
     public function test_should_return_all_users_online()
     {
         $user1 = $this->makeUser();
-        Auth::login($user1);
-        Auth::user()->setCache();
+        $user1->setCache();
 
         $user2 = $this->makeUser();
-        Auth::login($user2);
-        Auth::user()->setCache();
+        $user2->setCache();
 
         $user3 = $this->makeUser();
-        Auth::login($user3);
+        $user3->setCache();
+        $user3->pullCache();
 
         $user = $this->getUserModel();
 
@@ -81,16 +73,13 @@ class UsersOnlineTest extends TestCase
     {
 
         $user1 = $this->makeUser();
-        Auth::login($user1);
-        Auth::user()->setCache();
+        $user1->setCache();
 
         $user2 = $this->makeUser();
-        Auth::login($user2);
-        Auth::user()->setCache();
+        $user2->setCache();
 
         $user3 = $this->makeUser();
-        Auth::login($user3);
-        Auth::user()->setCache();
+        $user3->setCache();
 
         $user = $this->getUserModel();
 
@@ -105,16 +94,13 @@ class UsersOnlineTest extends TestCase
     public function test_should_retunr_all_online_users_order_by_least_recent()
     {
         $user1 = $this->makeUser();
-        Auth::login($user1);
-        Auth::user()->setCache();
+        $user1->setCache();
 
         $user2 = $this->makeUser();
-        Auth::login($user2);
-        Auth::user()->setCache();
+        $user2->setCache();
 
         $user3 = $this->makeUser();
-        Auth::login($user3);
-        Auth::user()->setCache();
+        $user3->setCache();
 
         Carbon::setTestNow();
 
@@ -139,8 +125,7 @@ class UsersOnlineTest extends TestCase
     {
         Carbon::setTestNow(Carbon::create('2017', 2, 22, 13, 50, 22));
         $user = $this->makeUser();
-        Auth::login($user);
-        Auth::user()->setCache(600);
+        $user->setCache();
 
         $this->assertEquals(
             [
