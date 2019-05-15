@@ -111,4 +111,3 @@ class UsersOnlineListenersTests extends TestCase
         $this->assertEquals(3, $user->allOnline()->count());
     }
 }
-

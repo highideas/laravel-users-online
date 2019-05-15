@@ -134,4 +134,3 @@ class UsersOnlineTest extends TestCase
         );
     }
 }
-
