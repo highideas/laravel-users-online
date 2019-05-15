@@ -2,12 +2,11 @@
 
 namespace HighIdeas\UsersOnline\Traits;
 
-use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cache;
 
 trait UsersOnlineTrait
 {
-
     public function allOnline()
     {
         return $this->all()->filter->isOnline();
@@ -15,7 +14,7 @@ trait UsersOnlineTrait
 
     public function isOnline()
     {
-         return Cache::has($this->getCacheKey());
+        return Cache::has($this->getCacheKey());
     }
 
     public function leastRecentOnline()
@@ -39,6 +38,7 @@ trait UsersOnlineTrait
         if (empty($cache = Cache::get($this->getCacheKey()))) {
             return 0;
         }
+
         return $cache['cachedAt'];
     }
 
@@ -70,6 +70,6 @@ trait UsersOnlineTrait
 
     public function getCacheKey()
     {
-        return sprintf('%s-%s', "UserOnline", $this->id);
+        return sprintf('%s-%s', 'UserOnline', $this->id);
     }
 }

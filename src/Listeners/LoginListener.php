@@ -7,7 +7,8 @@ class LoginListener
     /**
      * Handle the event.
      *
-     * @param  auth.login  $event
+     * @param auth.login $event
+     *
      * @return void
      */
     public function handle($event)

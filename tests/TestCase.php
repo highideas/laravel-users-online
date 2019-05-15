@@ -15,12 +15,11 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
         parent::setUp();
         $this->setUpDatabase();
         $this->migrateTables();
-
     }
 
     protected function setUpDatabase()
     {
-        $database = new DB;
+        $database = new DB();
         $database->addConnection(['driver' => 'sqlite', 'database' => ':memory:']);
         $database->bootEloquent();
         $database->setAsGlobal();
@@ -28,7 +27,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function migrateTables()
     {
-        DB::schema()->create('users', function($table){
+        DB::schema()->create('users', function($table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -36,14 +35,14 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
             $table->rememberToken();
             $table->timestamps();
         });
-    } 
+    }
 
     public function makeUser()
     {
-        $user = new User;
+        $user = new User();
         $user->name = $this->faker->name;
         $user->email = $this->faker->email;
-        $user->password = bcrypt("gabriel");
+        $user->password = bcrypt('gabriel');
         $user->save();
 
         return $user;
@@ -51,7 +50,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     public function getUserModel()
     {
-        return new User;
+        return new User();
     }
 }
 
