@@ -3,8 +3,8 @@
 namespace HighIdeas\Tests;
 
 use Carbon\Carbon;
-use \HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider;
-use \Illuminate\Support\Facades\Auth;
+use HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
 class UsersOnlineListenersTests extends TestCase
 {
@@ -103,7 +103,7 @@ class UsersOnlineListenersTests extends TestCase
         $userThree = $this->makeUser();
         Auth::login($userThree);
 
-        $userFour  = $this->makeUser();
+        $userFour = $this->makeUser();
         Auth::login($userFour);
 
         Auth::logout($userOne);

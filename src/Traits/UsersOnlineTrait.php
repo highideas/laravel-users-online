@@ -59,7 +59,7 @@ trait UsersOnlineTrait
         $cachedAt = Carbon::now();
         return [
             'cachedAt' => $cachedAt,
-            'user' => $this,
+            'user'     => $this,
         ];
     }
 

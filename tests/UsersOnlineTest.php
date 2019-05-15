@@ -128,7 +128,7 @@ class UsersOnlineTest extends TestCase
         $this->assertEquals(
             [
                 'cachedAt' => Carbon::now(),
-                'user' => $user,
+                'user'     => $user,
             ],
             $user->getCacheContent()
         );

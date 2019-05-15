@@ -27,7 +27,7 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function migrateTables()
     {
-        DB::schema()->create('users', function($table) {
+        DB::schema()->create('users', function ($table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
