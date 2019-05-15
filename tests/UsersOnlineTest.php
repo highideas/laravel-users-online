@@ -49,7 +49,6 @@ class UsersOnlineTest extends TestCase
         $model->pullCache();
 
         $this->assertFalse($model->isOnline());
-
     }
 
     public function test_should_return_all_users_online()
@@ -71,7 +70,6 @@ class UsersOnlineTest extends TestCase
 
     public function test_should_retunr_all_online_users_order_by_most_recent()
     {
-
         $user1 = $this->makeUser();
         $user1->setCache();
 
@@ -130,10 +128,9 @@ class UsersOnlineTest extends TestCase
         $this->assertEquals(
             [
                 'cachedAt' => Carbon::now(),
-                'user' => $user,
+                'user'     => $user,
             ],
             $user->getCacheContent()
         );
     }
 }
-
