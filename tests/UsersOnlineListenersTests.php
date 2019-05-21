@@ -2,12 +2,11 @@
 
 namespace HighIdeas\Tests;
 
-use HighIdeas\UsersOnline\Middleware\UsersOnline;
-use \HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider;
-use \Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use HighIdeas\UsersOnline\Providers\UsersOnlineEventServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
-class UsersOnlineListenersTest extends TestCase
+class UsersOnlineListenersTests extends TestCase
 {
     public function setUp() : void
     {
@@ -50,10 +49,10 @@ class UsersOnlineListenersTest extends TestCase
 
     public function test_user_should_list_all_logged_in_order_by_least_recent_online()
     {
-        $userTwo   = $this->makeUser();
+        $userTwo = $this->makeUser();
         Auth::login($userTwo);
 
-        $userOne   = $this->makeUser();
+        $userOne = $this->makeUser();
         Auth::login($userOne);
 
         $userThree = $this->makeUser();
@@ -72,10 +71,10 @@ class UsersOnlineListenersTest extends TestCase
 
     public function test_should_return_all_online_users_order_by_most_recent()
     {
-        $userTwo   = $this->makeUser();
+        $userTwo = $this->makeUser();
         Auth::login($userTwo);
 
-        $userOne   = $this->makeUser();
+        $userOne = $this->makeUser();
         Auth::login($userOne);
 
         $userThree = $this->makeUser();
@@ -95,16 +94,16 @@ class UsersOnlineListenersTest extends TestCase
 
     public function test_should_remove_offline_users()
     {
-        $userOne   = $this->makeUser();
+        $userOne = $this->makeUser();
         Auth::login($userOne);
 
-        $userTwo   = $this->makeUser();
+        $userTwo = $this->makeUser();
         Auth::login($userTwo);
 
         $userThree = $this->makeUser();
         Auth::login($userThree);
 
-        $userFour  = $this->makeUser();
+        $userFour = $this->makeUser();
         Auth::login($userFour);
 
         Auth::logout($userOne);
@@ -112,4 +111,3 @@ class UsersOnlineListenersTest extends TestCase
         $this->assertEquals(3, $user->allOnline()->count());
     }
 }
-

@@ -2,7 +2,6 @@
 
 namespace HighIdeas\UsersOnline\Providers;
 
-use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class UsersOnlineEventServiceProvider extends ServiceProvider
@@ -31,4 +30,3 @@ class UsersOnlineEventServiceProvider extends ServiceProvider
         parent::boot();
     }
 }
-

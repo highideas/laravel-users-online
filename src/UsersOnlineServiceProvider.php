@@ -24,4 +24,3 @@ class UsersOnlineServiceProvider extends ServiceProvider
     {
     }
 }
-
