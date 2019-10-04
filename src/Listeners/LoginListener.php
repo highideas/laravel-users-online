@@ -14,7 +14,7 @@ class LoginListener
     public function handle($event)
     {
         if ($event->user !== null) {
-            $event->user->setCache(config('session.lifetime'));
+            $event->user->setCache(config('session.lifetime') * 60);
         }
     }
 }
