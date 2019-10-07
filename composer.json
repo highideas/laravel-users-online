@@ -1,7 +1,7 @@
 {
     "name": "highideas/laravel-users-online",
     "description": "This package will provide an online users management.",
-    "version" : "3.0.0",
+    "version" : "3.0.1",
     "license": "MIT",
     "keywords": ["laravel", "users"],
     "authors": [
