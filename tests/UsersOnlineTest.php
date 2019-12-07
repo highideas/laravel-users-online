@@ -146,6 +146,7 @@ class UsersOnlineTest extends TestCase
         $model = $this->makeUser();
         // create 5 users and make online
 
+
         for($i = 0; $i < 5; $i++) {
             $model = $this->makeUser();
             $model->setCache();
@@ -160,6 +161,7 @@ class UsersOnlineTest extends TestCase
         $model = $this->makeUser();
         // create 5 users and make online
 
+
         for($i = 0; $i < 5; $i++) {
             $model = $this->makeUser();
             $model->setCache();
@@ -173,6 +175,7 @@ class UsersOnlineTest extends TestCase
     {
         $model = $this->makeUser();
         // create 5 users and make online
+
 
         for($i = 0; $i < 5; $i++) {
             $model = $this->makeUser();
