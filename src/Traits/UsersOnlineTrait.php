@@ -10,6 +10,7 @@ trait UsersOnlineTrait
     public static function allOnline()
     {
         $className = self::getClass();
+
         return (new $className())->all()->filter->isOnline();
     }
 
