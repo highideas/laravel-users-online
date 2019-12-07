@@ -133,4 +133,53 @@ class UsersOnlineTest extends TestCase
             $user->getCacheContent()
         );
     }
+
+    public function test_get_class_resolves_user()
+    {
+        $model = $this->makeUser();
+
+        $this->assertEquals('HighIdeas\Tests\User', $model::getClass());
+    }
+
+    public function test_can_call_all_online_statically()
+    {
+        $model = $this->makeUser();
+        // create 5 users and make online
+        for($i = 0; $i < 5; $i++)
+        {
+            $model = $this->makeUser();
+            $model->setCache();
+        }
+
+        $allOnline = $model::allOnline();
+        $this->assertCount(5, $allOnline);
+    }
+
+    public function test_can_call_least_recent_online_statically()
+    {
+        $model = $this->makeUser();
+        // create 5 users and make online
+        for($i = 0; $i < 5; $i++)
+        {
+            $model = $this->makeUser();
+            $model->setCache();
+        }
+
+        $leastOnline = $model::leastRecentOnline();
+        $this->assertCount(5, $leastOnline);
+    }
+
+    public function test_can_call_most_recent_online_statically()
+    {
+        $model = $this->makeUser();
+        // create 5 users and make online
+        for($i = 0; $i < 5; $i++)
+        {
+            $model = $this->makeUser();
+            $model->setCache();
+        }
+
+        $leastOnline = $model::mostRecentOnline();
+        $this->assertCount(5, $leastOnline);
+    }
 }

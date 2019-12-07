@@ -7,9 +7,15 @@ use Illuminate\Support\Facades\Cache;
 
 trait UsersOnlineTrait
 {
-    public function allOnline()
+    public static function allOnline()
     {
-        return $this->all()->filter->isOnline();
+        $className = self::getClass();
+        return (new $className())->all()->filter->isOnline();
+    }
+
+    public static function getClass()
+    {
+        return get_class();
     }
 
     public function isOnline()
@@ -17,17 +23,17 @@ trait UsersOnlineTrait
         return Cache::has($this->getCacheKey());
     }
 
-    public function leastRecentOnline()
+    public static function leastRecentOnline()
     {
-        return $this->allOnline()
+        return self::allOnline()
             ->sortBy(function ($user) {
                 return $user->getCachedAt();
             });
     }
 
-    public function mostRecentOnline()
+    public static function mostRecentOnline()
     {
-        return $this->allOnline()
+        return self::allOnline()
             ->sortByDesc(function ($user) {
                 return $user->getCachedAt();
             });
