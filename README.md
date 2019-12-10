@@ -70,6 +70,13 @@ $user = new User;
 $user->mostRecentOnline();
 $user->leastRecentOnline();
 ```
+Using with [Real-time Facades](https://laravel.com/docs/6.x/facades#real-time-facades):
+```php
+use Facades\App\User as UserFacade;
+
+UserFacade::mostRecentOnline();
+UserFacade::leastRecentOnline();
+```
 
 **Installation and usage on last versions of framework:**
 
