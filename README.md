@@ -12,7 +12,7 @@
 
  Laravel      | Package
 :-------------|:----------
-  6.0.x        | 3.0.x
+  6.x.x        | 3.0.x
   5.8.x        | 3.0.x
   5.7.x        | 2.3.x
   5.6.x        | 2.3.x
@@ -69,6 +69,13 @@ You can sort all users online with the methods `mostRecentOnline()` and `leastRe
 $user = new User;
 $user->mostRecentOnline();
 $user->leastRecentOnline();
+```
+Using with [Real-time Facades](https://laravel.com/docs/6.x/facades#real-time-facades):
+```php
+use Facades\App\User as UserFacade;
+
+UserFacade::mostRecentOnline();
+UserFacade::leastRecentOnline();
 ```
 
 **Installation and usage on last versions of framework:**
