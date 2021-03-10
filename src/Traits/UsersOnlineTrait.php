@@ -19,18 +19,22 @@ trait UsersOnlineTrait
 
     public function leastRecentOnline()
     {
-        return $this->allOnline()
+        $sorted = $this->allOnline()
             ->sortBy(function ($user) {
                 return $user->getCachedAt();
             });
+
+        return $sorted->values()->all();
     }
 
     public function mostRecentOnline()
     {
-        return $this->allOnline()
+        $sorted =  $this->allOnline()
             ->sortByDesc(function ($user) {
                 return $user->getCachedAt();
             });
+
+        return $sorted->values()->all();
     }
 
     public function getCachedAt()
