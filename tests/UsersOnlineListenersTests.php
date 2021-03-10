@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersOnlineListenersTests extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->app->register(UsersOnlineEventServiceProvider::class);

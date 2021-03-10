@@ -29,7 +29,7 @@ trait UsersOnlineTrait
 
     public function mostRecentOnline()
     {
-        $sorted =  $this->allOnline()
+        $sorted = $this->allOnline()
             ->sortByDesc(function ($user) {
                 return $user->getCachedAt();
             });
