@@ -14,7 +14,7 @@ trait UsersOnlineTrait
 
     public function isOnline()
     {
-        return Cache::has($this->getCacheKey());
+        return Cache::driver('file')->has($this->getCacheKey());
     }
 
     public function leastRecentOnline()
@@ -39,7 +39,7 @@ trait UsersOnlineTrait
 
     public function getCachedAt()
     {
-        if (empty($cache = Cache::get($this->getCacheKey()))) {
+        if (empty($cache = Cache::driver('file')->get($this->getCacheKey()))) {
             return 0;
         }
 
@@ -48,7 +48,7 @@ trait UsersOnlineTrait
 
     public function setCache($seconds = 300)
     {
-        return Cache::put(
+        return Cache::driver('file')->put(
             $this->getCacheKey(),
             $this->getCacheContent(),
             $seconds
@@ -57,7 +57,7 @@ trait UsersOnlineTrait
 
     public function getCacheContent()
     {
-        if (!empty($cache = Cache::get($this->getCacheKey()))) {
+        if (!empty($cache = Cache::driver('file')->get($this->getCacheKey()))) {
             return $cache;
         }
         $cachedAt = Carbon::now();
@@ -70,7 +70,7 @@ trait UsersOnlineTrait
 
     public function pullCache()
     {
-        Cache::pull($this->getCacheKey());
+        Cache::driver('file')->pull($this->getCacheKey());
     }
 
     public function getCacheKey()
