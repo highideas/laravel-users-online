@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class UsersOnlineListenersTests extends TestCase
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
         $this->app->register(UsersOnlineEventServiceProvider::class);
@@ -66,7 +66,9 @@ class UsersOnlineListenersTests extends TestCase
             $userOne->id,
             $userThree->id,
         ];
-        $this->assertEquals($expectedOrder, $user->leastRecentOnline()->pluck('id')->all());
+        $leastRecentOnline = collect($user->leastRecentOnline());
+
+        $this->assertEquals($expectedOrder, $leastRecentOnline->pluck('id')->all());
     }
 
     public function test_should_return_all_online_users_order_by_most_recent()
@@ -89,7 +91,9 @@ class UsersOnlineListenersTests extends TestCase
             $userOne->id,
             $userTwo->id,
         ];
-        $this->assertEquals($expectedOrder, $user->mostRecentOnline()->pluck('id')->all());
+        $mostRecentOnline = collect($user->mostRecentOnline());
+
+        $this->assertEquals($expectedOrder, $mostRecentOnline->pluck('id')->all());
     }
 
     public function test_should_remove_offline_users()

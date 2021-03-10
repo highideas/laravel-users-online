@@ -86,7 +86,9 @@ class UsersOnlineTest extends TestCase
             $user2->id,
             $user1->id,
         ];
-        $this->assertEquals($expectedOrder, $user->mostRecentOnline()->pluck('id')->all());
+        $mostRecentOnline = collect($user->mostRecentOnline());
+
+        $this->assertEquals($expectedOrder, $mostRecentOnline->pluck('id')->all());
     }
 
     public function test_should_retunr_all_online_users_order_by_least_recent()
@@ -109,7 +111,9 @@ class UsersOnlineTest extends TestCase
             $user2->id,
             $user3->id,
         ];
-        $this->assertEquals($expectedOrder, $user->leastRecentOnline()->pluck('id')->all());
+        $leastRecentOnline = collect($user->leastRecentOnline());
+
+        $this->assertEquals($expectedOrder, $leastRecentOnline->pluck('id')->all());
     }
 
     public function test_get_cached_at_should_return_zero_when_cache_not_found()
