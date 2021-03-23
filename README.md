@@ -21,7 +21,7 @@
   5.3.x        | 2.0.x
   5.2.x        | 1.0.x
 
-## Instalation
+## Installation
 
 Add the new required package in your composer.json
 
